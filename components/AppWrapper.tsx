@@ -6,7 +6,7 @@ import Image from "next/image";
 import logo from "../photos/logo.jpg";
 import { useRouter } from "next/router";
 import { FaRegEdit } from "react-icons/fa";
-import { PiHamburgerDuotone } from "react-icons/pi";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 
 type Props = {
@@ -30,9 +30,9 @@ const AppWrapper = ({
       <div className="">
         {navbarEnable && (
           <>
-            <div className="flex p-4 w-full justify-around items-cente shadow-[4px_0_8px_rgba(0,0,0,0.1)]">
+            <div className="flex p-4 w-full justify-around item-center shadow-[4px_0_8px_rgba(0,0,0,0.1)]">
               <div
-                className="h-16"
+                className="h-16 flex justify-center items-center"
                 onClick={() => {
                   router.push("/");
                 }}
@@ -58,7 +58,7 @@ const AppWrapper = ({
                 <Navbar items={NavbarItems} />
               </div>
               <div className="block flex items-center justify-center lg:hidden">
-                <PiHamburgerDuotone
+                <RxHamburgerMenu
                   size={30}
                   onClick={() => {
                     setopenMenu(true);
@@ -107,4 +107,5 @@ const NavbarItems = [
     icon: <FaRegEdit size={28} />,
     url: "/write-blog",
   },
+  
 ];
