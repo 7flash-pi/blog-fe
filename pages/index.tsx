@@ -1,4 +1,5 @@
 import AppWrapper from "@/components/AppWrapper";
+import BlogCategory from "@/components/BlogCategory";
 
 
 export default function Home() {
@@ -6,8 +7,8 @@ export default function Home() {
     <div className=""
     >
       <AppWrapper navbarEnable={true} padding={true} isSearchEnabled={true}>
-        <section className="p-12">
-            Hello paro
+        <section className=" flex flex-row p-12 ">
+            <BlogCategory />
         </section>
 
          </AppWrapper>

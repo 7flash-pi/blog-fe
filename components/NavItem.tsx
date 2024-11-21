@@ -23,15 +23,6 @@ const Navbar = ({ items }: Props) => {
         </div>
       ))}
     </>
-    // <div
-    //   className="flex p-3 gap-2 justify-center items-center font-bold "
-    //   onClick={() => {
-    //     router?.push(item.url || "/");
-    //   }}
-    // >
-    //   {item.icon && <div>{item.icon}</div>}
-    //   <p className="text-lg ">{item.title}</p>
-    // </div>
   );
 };
 

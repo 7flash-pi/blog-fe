@@ -46,7 +46,7 @@ const AppWrapper = ({
                   <>
                     <input
                       placeholder="Search..."
-                      className="p-2 focus:!outline-none focus:border focus:border-black focus:rounded-lg"
+                      className="p-2 focus:!outline-none  rounded-lg focus:border focus:border-black focus:rounded-lg"
                     />
 
                     <FiSearch size={24} className="cursor-pointer" />

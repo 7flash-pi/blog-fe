@@ -15,8 +15,8 @@ const Profile = () => {
         </div>
 
         <div className="flex flex-col gap-4 flex-1 sm:items-center lg:items-start">
-          <p className="text-5xl text-gray-700">Md. Parwez</p>
-          <p className="text-2xl text-gray-500  ">
+          <p className="text-5xl text-black">Md. Parwez</p>
+          <p className="text-2xl text-black  ">
             {" "}
             ADVOCATE ( Patna High court ){" "}
           </p>
