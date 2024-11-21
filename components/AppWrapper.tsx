@@ -27,7 +27,7 @@ const AppWrapper = ({
       <div className="">
         {navbarEnable && (
           <>
-            <div className="flex p-4 justify-around items-cente shadow-[4px_0_8px_rgba(0,0,0,0.1)]">
+            <div className="flex p-4 w-full justify-around items-cente shadow-[4px_0_8px_rgba(0,0,0,0.1)]">
               <div
                 className="h-16"
                 onClick={() => {
