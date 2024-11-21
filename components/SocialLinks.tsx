@@ -8,7 +8,7 @@ import {
 
 const SocialLinks = () => {
   return (
-    <div className="flex gap-8 flex-col">
+    <div className="flex gap-8 lg:flex-col sm:flex-row">
       {socialLinks.map((link) => (
         <div
           key={link.title}

@@ -6,6 +6,8 @@ import Image from "next/image";
 import logo from "../photos/logo.jpg";
 import { useRouter } from "next/router";
 import { FaRegEdit } from "react-icons/fa";
+import { PiHamburgerDuotone } from "react-icons/pi";
+import { IoMdClose } from "react-icons/io";
 
 type Props = {
   navbarEnable?: boolean;
@@ -20,7 +22,8 @@ const AppWrapper = ({
   children,
   isSearchEnabled,
 }: Props) => {
-  const [openInput, setopenInput] = useState(false);
+  const [openMenu, setopenMenu] = useState(false);
+
   const router = useRouter();
   return (
     <>
@@ -46,22 +49,38 @@ const AppWrapper = ({
                       className="p-2 focus:!outline-none focus:border focus:border-black focus:rounded-lg"
                     />
 
-                    <FiSearch
-                      size={24}
-                      className="cursor-pointer"
-                      onClick={() => {
-                        setopenInput(true);
-                      }}
-                      onMouseEnter={() => {
-                        setopenInput(!openInput);
-                      }}
-                    />
+                    <FiSearch size={24} className="cursor-pointer" />
                   </>
                 )}
               </div>
 
-              <div className="flex gap-2">
+              <div className="hidden lg:block lg:flex lg:gap-2">
                 <Navbar items={NavbarItems} />
+              </div>
+              <div className="block flex items-center justify-center lg:hidden">
+                <PiHamburgerDuotone
+                  size={30}
+                  onClick={() => {
+                    setopenMenu(true);
+                  }}
+                />
+              </div>
+              <div
+                className={`fixed top-0 left-0 w-full h-full bg-white text-black p-4 transition-transform transform ${
+                  openMenu ? "translate-y-0" : "-translate-y-full"
+                } lg:hidden`}
+              >
+                {/* Navbar Items */}
+                <div className="flex flex-col ">
+                <IoMdClose
+                  size={24}
+                  onClick={() => {
+                    setopenMenu(false);
+                  }}
+                />
+                <Navbar items={NavbarItems} />
+               
+                </div>
               </div>
             </div>
           </>
