@@ -1,9 +1,9 @@
 import React from "react";
 import BlogPill from "./BlogPill";
 
-type Props = {};
 
-const BlogCategory = (props: Props) => {
+
+const BlogCategory = () => {
   return (
     <div className="flex p-2 overflow-x-scroll  h-24 rounded-lg">
       {category.map((category, index) => {

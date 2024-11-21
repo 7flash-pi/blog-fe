@@ -1,8 +1,7 @@
 import React from "react";
 
-type Props = {};
 
-const BlogInput = ({}: Props) => {
+const BlogInput = () => {
   return (
       <div className="w-3/4 max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
   <label className="block text-lg font-semibold text-gray-800 mb-3">Blog Title</label>
