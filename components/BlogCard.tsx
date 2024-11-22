@@ -7,7 +7,7 @@ type Props ={
   isReadMoreEnabled?: boolean;
 }
 
-const BlogCard = ({isReadMoreEnabled=false}:Props) => {
+const BlogCard = ({isReadMoreEnabled=true}:Props) => {
   const router = useRouter();
   const truncateString = (str: string, maxLength: number) => {
     if (str.length > maxLength) {

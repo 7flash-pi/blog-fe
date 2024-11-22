@@ -9,7 +9,7 @@ export default function Home() {
         <section className=" p-12 flex flex-col gap-8">
           <BlogCategory />
 
-          <div className="p-12 w-4/5 shadow-2xl transition-shadow duration-300 flex flex-col gap-8">
+          <div className="p-12 lg:w-4/5  md:w-full shadow-2xl transition-shadow duration-300 flex flex-col gap-8">
             <BlogCard />
             <BlogCard />
             <BlogCard />
