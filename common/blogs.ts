@@ -1,4 +1,4 @@
-import { category } from "@/components/BlogCategory";
+import { categories } from "@/components/BlogCategory";
 import paru from "../photos/paru.jpg";
 import raj from "../photos/raj1.jpg";
 export const blogs = [
@@ -8,7 +8,7 @@ export const blogs = [
       "<p>Thirty-four teams from educational institutions across western India locked horns as ConQuest&mdash;India&rsquo;s premier quiz on Indian Constitution, history and politics&mdash;made its debut in Mumbai on 9 November.</p><p>Organised by the Centre for Law and Policy Research, Bengaluru (CLPR), ConQuest is the public outreach arm of its&nbsp;educational platform.</p><p>West Regional Round of ConQuest 2024 was organised in collaboration with the School of Law, Rights and Constitutional Governance at Tata Institute of Social Sciences, Mumbai. Justice Roshan Dalvi (Retd.) of Bombay High Court was the guest of honour at the event.</p><p>After a fiercely competitive preliminary round, six teams advanced to the regional finals, namely Indian Institute of Technology Bombay, Gujarat National Law University, National Law Institute University (NLIU) Bhopal, Goa University, and two teams from TISS Mumbai.</p><p>Next were the regional finals which kicked off with a question about freedom fighter Yusuf Mehrally, who along with members of the Bombay Youth League, dressed as coolies, welcomed a British delegation proposing constitutional reforms in the 1920s at the port in Bombay with a slogan he coined. He would go on to coin another slogan which gained currency after a stamp of approval from Mahatma Gandhi. Participants were asked to identify the two slogans. What were they? Simon, go back! And Quit India!</p>",
     createdBy: "Paruwaaaa",
     createdAt: "22th November 2024",
-    type: category[2].title,
+    type: categories[2].title,
     user: {
       name: "Paruwaaaa",
       number: "8051906026",
@@ -42,3 +42,12 @@ export const blogs = [
     },
   },
 ];
+
+export type blog={
+  title:string,
+  description:string,
+  createdAt: string;
+  createdBy: string,
+  type:string,
+
+}

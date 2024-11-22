@@ -15,7 +15,7 @@ const BlogCategory = () => {
   useEffect(() => {
     if (router.isReady && router?.asPath?.split("#")[1]?.length > 0) {
       const hash = router.asPath.split("#")[1];
-      const index = category.findIndex(
+      const index = categories.findIndex(
         (item) => item.title === decodeURI(hash)
       );
       setActiveTab(index);
@@ -25,7 +25,7 @@ const BlogCategory = () => {
 
   return (
     <div className=" lg:w-4/4 md:w-5/6   bg-white rounded-lg shadow-md p-3 flex  flex-row  gap-4  overflow-x-auto">
-      {category.map((category, index) => {
+      {categories.map((category, index) => {
         return (
           <div key={index} className="flex items-center justify-center  ">
             <BlogPill
@@ -45,7 +45,7 @@ const BlogCategory = () => {
 
 export default BlogCategory;
 
-export const category = [
+export const categories = [
   {
     title: "All Blogs",
   },
