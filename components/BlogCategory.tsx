@@ -13,7 +13,7 @@ const BlogCategory = () => {
   };
 
   useEffect(() => {
-    if (router.isReady && router.asPath.split("#")[1].length > 0) {
+    if (router.isReady && router.asPath.split("#")[1]?.length > 0) {
       const hash = router.asPath.split("#")[1];
       const index = categories.findIndex(
         (item) => item.title === decodeURI(hash)
