@@ -7,7 +7,7 @@ export default function Home() {
     <div className=""
     >
       <AppWrapper navbarEnable={true} padding={true} isSearchEnabled={true}>
-        <section className=" flex flex-row p-12 ">
+        <section className=" p-12 ">
             <BlogCategory />
         </section>
 
