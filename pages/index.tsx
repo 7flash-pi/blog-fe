@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <div className="">
       <AppWrapper navbarEnable={true} padding={true} isSearchEnabled={true}>
-        <section className=" p-12 flex flex-col gap-8">
+        <section className="p-6 flex flex-col gap-8 w-7/9">
           <BlogCategory />
 
-          <div className="p-12 lg:w-4/5  md:w-full shadow-2xl transition-shadow duration-300 flex flex-col gap-8">
+          <div className="p-12 lg:w-7/9  md:w-full shadow-2xl transition-shadow duration-300 flex flex-col gap-8">
             <BlogCard />
             <BlogCard />
             <BlogCard />
