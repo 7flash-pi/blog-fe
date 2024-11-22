@@ -13,7 +13,6 @@ const Profile = () => {
             src={userData.image.src}
             alt="paruuu"
             className=" object-cover w-full h-full"
-            layout="intrinsic"
           />
         </div>
 
