@@ -24,7 +24,7 @@ const BlogCategory = () => {
   },[router]);
 
   return (
-    <div className=" lg:w-4/4 md:w-5/6  relative bg-white rounded-lg shadow-md p-3 flex  flex-row  gap-4  overflow-x-auto">
+    <div className=" lg:w-4/4 md:w-5/6   bg-white rounded-lg shadow-md p-3 flex  flex-row  gap-4  overflow-x-auto">
       {category.map((category, index) => {
         return (
           <div key={index} className="flex items-center justify-center  ">

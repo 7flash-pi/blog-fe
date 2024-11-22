@@ -73,8 +73,8 @@ const AppWrapper = ({
                 />
               </div>
               <div
-                className={`fixed top-0 left-0 w-full h-full bg-white text-black p-4 transition-transform transform ${
-                  openMenu ? "translate-y-0" : "-translate-y-full"
+                className={`fixed bottom-0 left-0 w-full h-full bg-white text-black p-4 transition-transform transform ${
+                  openMenu ? "translate-x-0" : "-translate-x-full"
                 } lg:hidden`}
               >
                 {/* Navbar Items */}
