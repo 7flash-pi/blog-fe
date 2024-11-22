@@ -1,12 +1,12 @@
+'use client'
 import { blog } from "@/common/blogs";
 import { formatDate } from "@/common/util";
 import React, { useState } from "react";
-import { categories } from "./BlogCategory";
+import WysiwygEditor from "./WysiwygEditor"; // Import the WysiwygEditor component
+import { categories } from "./BlogCategory"; // Assuming categories are defined here
 
 const BlogInput = () => {
   const [blogData, setBlogData] = useState<blog | null>(null);
-
-  // List of categories (you can modify this as per your needs)
 
   // Handle form submission and update blogData with selected category
   const handleBlogsubmit = () => {
@@ -22,6 +22,7 @@ const BlogInput = () => {
 
   return (
     <div className="w-3/4 max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      {/* Blog Title */}
       <label className="block text-lg font-semibold text-gray-800 mb-3">
         Blog Title
       </label>
@@ -42,25 +43,24 @@ const BlogInput = () => {
         }}
       />
 
+      {/* Blog Content */}
       <label className="block text-lg font-semibold text-gray-800 mt-6 mb-3">
         Blog Content
       </label>
-      <textarea
-        id="content"
-        rows={8}
-        placeholder="Write your blog content here..."
-        value={blogData?.description || ''}
-        onChange={(e) => {
+
+      {/* Use WysiwygEditor Component for Blog Content */}
+      <WysiwygEditor
+        value={blogData?.description || ''} // The content of the blog
+        onChange={(newValue) => {
           setBlogData(
             (prevBlogData) =>
               ({
                 ...prevBlogData,
-                description: e.target.value,
+                description: newValue, // Update the description with new content from editor
               } as blog)
           );
         }}
-        className="w-full lg:w-4/4 border border-gray-300 rounded-md p-4 text-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800 shadow-sm overflow-auto"
-      ></textarea>
+      />
 
       {/* Author and Category in the same row */}
       <div className="flex items-center gap-4 mt-6">
@@ -78,7 +78,7 @@ const BlogInput = () => {
                 (prevBlogData) =>
                   ({
                     ...prevBlogData,
-                    createdBy: e.target.value,
+                    createdBy: e.target.value, // Update the author
                   } as blog)
               );
             }}
@@ -98,7 +98,7 @@ const BlogInput = () => {
                 (prevBlogData) =>
                   ({
                     ...prevBlogData,
-                    type: e.target.value,
+                    type: e.target.value, // Update the selected category type
                   } as blog)
               );
             }}
