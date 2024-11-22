@@ -21,7 +21,7 @@ const BlogInput = () => {
   };
 
   return (
-    <div className="w-3/4 max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="lg:w-3/4 md:w-full max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       {/* Blog Title */}
       <label className="block text-lg font-semibold text-gray-800 mb-3">
         Blog Title
@@ -62,9 +62,9 @@ const BlogInput = () => {
         }}
       />
 
-      {/* Author and Category in the same row */}
-      <div className="flex items-center gap-4 mt-6">
-        <div className="w-full">
+      {/* Author and Category in the same row, responsive design */}
+      <div className="flex flex-col md:flex-row items-center gap-4 mt-6">
+        <div className="w-full md:w-1/2">
           <label className="block text-lg font-semibold text-gray-800 mb-3">
             Author
           </label>
@@ -86,7 +86,7 @@ const BlogInput = () => {
           />
         </div>
 
-        <div className="w-full">
+        <div className="w-full md:w-1/2">
           <label className="block text-lg font-semibold text-gray-800 mb-3">
             Category
           </label>
