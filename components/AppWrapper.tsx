@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "./NavItem";
 import { CgProfile } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
@@ -23,8 +23,14 @@ const AppWrapper = ({
   isSearchEnabled,
 }: Props) => {
   const [openMenu, setopenMenu] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
+  const handleSearchClick = () => {
+    if (inputRef.current) {
+      inputRef?.current?.focus();
+    }
+  };
   return (
     <>
       <div className="">
@@ -45,11 +51,12 @@ const AppWrapper = ({
                 {isSearchEnabled && (
                   <>
                     <input
+                      ref={inputRef}
                       placeholder="Search..."
                       className="p-2 focus:!outline-none  rounded-lg focus:border focus:border-black focus:rounded-lg"
                     />
 
-                    <FiSearch size={24} className="cursor-pointer" />
+                    <FiSearch size={24} className="cursor-pointer"  onClick={handleSearchClick}/>
                   </>
                 )}
               </div>
@@ -72,14 +79,13 @@ const AppWrapper = ({
               >
                 {/* Navbar Items */}
                 <div className="flex flex-col ">
-                <IoMdClose
-                  size={24}
-                  onClick={() => {
-                    setopenMenu(false);
-                  }}
-                />
-                <Navbar items={NavbarItems} />
-               
+                  <IoMdClose
+                    size={24}
+                    onClick={() => {
+                      setopenMenu(false);
+                    }}
+                  />
+                  <Navbar items={NavbarItems} />
                 </div>
               </div>
             </div>
@@ -107,5 +113,4 @@ const NavbarItems = [
     icon: <FaRegEdit size={28} />,
     url: "/write-blog",
   },
-  
 ];
