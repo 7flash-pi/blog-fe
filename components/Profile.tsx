@@ -1,32 +1,39 @@
 import React from "react";
-import paru from "../photos/paru.jpg";
 import SocialLinks from "./SocialLinks";
+import { blogs } from "@/common/blogs";
+
 
 const Profile = () => {
+  const userData = blogs[1].user;
   return (
-    <>
-      <div className="flex gap-4 justify-evenly items-center flex-col sm:flex-row ">
-        <div className="duration-500 ease-in-out flex-1">
+    <div className="flex flex-col">
+      <div className="flex flex-col md:flex-row lg:flex-row gap-16 items-center lg:items-start justify-around">
+        <div className="overflow-hidden rounded-full flex-1 max-w-[500px]">
           <img
-            src={paru.src}
+            src={userData.image.src}
             alt="paruuu"
-            className="rounded-[50%] "
+            className=" object-cover w-full h-full"
+            layout="intrinsic"
           />
         </div>
 
-        <div className="flex flex-col gap-4 flex-1 sm:items-center lg:items-start">
-          <p className="text-5xl text-black">Md. Parwez</p>
-          <p className="text-2xl text-black  ">
-            {" "}
-            ADVOCATE ( Patna High court ){" "}
+        <div className="flex flex-col items-center justify-center gap-4 flex-1 sm:items-center lg:items-start">
+          <p className="text-5xl text-black">{userData.name}</p>
+          <p className="text-2xl text-black">
+            {userData.designation.toUpperCase()} (
+            {userData.lincesedFrom.toLowerCase()})
           </p>
+          <p className="text-lg text-black">
+            College: {userData.college.toUpperCase()}
+          </p>
+          <p className="text-md text-black">{userData.selfIntro}</p>
         </div>
-
-        <section className="flex flex-col">
-          <SocialLinks />
-        </section>
       </div>
-    </>
+
+      <section className="flex p-20 justify-center items-center ">
+        <SocialLinks />
+      </section>
+    </div>
   );
 };
 
