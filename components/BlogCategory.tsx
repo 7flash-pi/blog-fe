@@ -45,7 +45,7 @@ const BlogCategory = () => {
 
 export default BlogCategory;
 
-const category = [
+export const category = [
   {
     title: "All Blogs",
   },
