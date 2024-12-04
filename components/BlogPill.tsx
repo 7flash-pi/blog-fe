@@ -14,7 +14,7 @@ const BlogPill = ({ title, activeTab, currentIndex, onClick }: Props) => {
         className={`flex-1 py-2 text-center transition whitespace-nowrap ${
           activeTab === currentIndex
             ? "text-blue-500 border-b-2 border-blue-500 font-semibold"
-            : "text-gray-500 hover:text-blue-500"
+            : "text-black hover:text-blue-500"
         }`}
         onClick={onClick}
       >

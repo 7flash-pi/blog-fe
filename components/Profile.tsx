@@ -12,7 +12,7 @@ const Profile = () => {
           <img
             src={userData.image.src}
             alt="paruuu"
-            className=" object-cover w-full h-full"
+            className=" object-cover w-full h-full shadow-complex"
           />
         </div>
 
