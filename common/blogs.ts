@@ -1,4 +1,4 @@
-import { categories } from "@/components/BlogCategory";
+
 import paru from "../photos/paru.jpg";
 import raj from "../photos/raj1.jpg";
 export const blogs = [
