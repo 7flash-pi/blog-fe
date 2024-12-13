@@ -5,9 +5,10 @@ import { useRouter } from "next/router";
 
 type Props = {
   categories: any;
+  isCatLoading?:boolean,
 };
 
-const BlogCategory = ({ categories }: Props) => {
+const BlogCategory = ({ categories,isCatLoading }: Props) => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const router = useRouter();
   const onActiveTab = (category: { name: string }, index: number) => {
@@ -27,6 +28,10 @@ const BlogCategory = ({ categories }: Props) => {
       console.log({ laura: decodeURI(hash), index });
     }
   }, [router]);
+
+  if(isCatLoading){
+    return <></>
+  }
 
   return (
     <div className=" lg:w-4/4 md:w-5/6   bg-white rounded-lg shadow-md p-3 flex  flex-row  gap-4  overflow-x-auto">

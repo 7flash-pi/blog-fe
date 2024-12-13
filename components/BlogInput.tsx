@@ -1,21 +1,26 @@
-'use client'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import { blog } from "@/common/blogs";
 import { formatDate } from "@/common/util";
 import React, { useState } from "react";
 import WysiwygEditor from "./WysiwygEditor"; // Import the WysiwygEditor component
-import { categories } from "./BlogCategory"; // Assuming categories are defined here
+import { useGetBlogCategories } from "@/api-fetchers/apiEndpoint";
 
 const BlogInput = () => {
   const [blogData, setBlogData] = useState<blog | null>(null);
+  const { data: categories } = useGetBlogCategories("blog-categories");
 
   // Handle form submission and update blogData with selected category
   const handleBlogsubmit = () => {
     if (blogData) {
-      setBlogData((prevBlogData) => ({
-        ...prevBlogData,
-        createdAt: formatDate(new Date()), // Add current date
-        type: prevBlogData?.type || 'General', // Default type to 'General' if undefined
-      }) as blog);
+      setBlogData(
+        (prevBlogData) =>
+          ({
+            ...prevBlogData,
+            createdAt: formatDate(new Date()), // Add current date
+            type: prevBlogData?.type || "General", // Default type to 'General' if undefined
+          } as blog)
+      );
     }
     console.log(blogData);
   };
@@ -30,7 +35,7 @@ const BlogInput = () => {
         type="text"
         id="title"
         placeholder="Enter the blog title"
-        value={blogData?.title || ''}
+        value={blogData?.title || ""}
         className="w-full border border-gray-300 rounded-md p-4 text-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800 shadow-sm"
         onChange={(e) => {
           setBlogData(
@@ -50,7 +55,7 @@ const BlogInput = () => {
 
       {/* Use WysiwygEditor Component for Blog Content */}
       <WysiwygEditor
-        value={blogData?.description || ''} // The content of the blog
+        value={blogData?.description || ""} // The content of the blog
         onChange={(newValue) => {
           setBlogData(
             (prevBlogData) =>
@@ -72,7 +77,7 @@ const BlogInput = () => {
             type="text"
             id="author"
             placeholder="Enter author's name"
-            value={blogData?.createdBy || ''}
+            value={blogData?.createdBy || ""}
             onChange={(e) => {
               setBlogData(
                 (prevBlogData) =>
@@ -92,7 +97,7 @@ const BlogInput = () => {
           </label>
           <select
             id="category"
-            value={blogData?.type || ''}
+            value={blogData?.type || ""}
             onChange={(e) => {
               setBlogData(
                 (prevBlogData) =>
@@ -104,12 +109,15 @@ const BlogInput = () => {
             }}
             className="w-full border border-gray-300 rounded-md p-4 text-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800 shadow-sm"
           >
-            <option value="" disabled>Select a category</option>
-            {categories.map((category, index) => (
-              <option key={index} value={category?.title}>
-                {category?.title}
-              </option>
-            ))}
+            <option value="" disabled>
+              Select a category
+            </option>
+            {categories?.length > 0 &&
+              categories.map((category: any, index: any) => (
+                <option key={index} value={category?.name}>
+                  {category?.name}
+                </option>
+              ))}
           </select>
         </div>
       </div>

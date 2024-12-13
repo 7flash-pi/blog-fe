@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 type Props = {
   isReadMoreEnabled?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  blog:any
+  blog?:any
 };
 
 const BlogCard = ({ isReadMoreEnabled = true,blog }: Props) => {
@@ -14,7 +14,8 @@ const BlogCard = ({ isReadMoreEnabled = true,blog }: Props) => {
 
 
   const handleReadMoreClick = () => {
-    router.push("/singleBlog");
+    console.log(blog)
+    router.push(`/singleBlog/${blog?.id}`);
   };
 
 // Example blog from blogs array
@@ -22,6 +23,7 @@ const BlogCard = ({ isReadMoreEnabled = true,blog }: Props) => {
   return (
     <div
       className={`border-2 border-gray-200 p-6 w-full lg:w-4/5 md:w-3/4 rounded-lg flex flex-col gap-4 shadow-lg hover:shadow-2xl transition-shadow duration-300 `}
+      onClick={handleReadMoreClick}
      
     >
       {/* Blog Title */}

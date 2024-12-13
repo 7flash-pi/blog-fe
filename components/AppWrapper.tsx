@@ -92,7 +92,7 @@ const AppWrapper = ({
           </>
         )}
 
-        <section className={` md:p-0  ${padding ? "lg:px-24" : "lg:p-0"}`}>
+        <section className={`md:p-0  ${padding ? "lg:px-20 my-40" : "lg:p-0"}`}>
           {children}
         </section>
       </div>
