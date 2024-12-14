@@ -7,7 +7,7 @@ import logo from "../photos/logo.jpg";
 import { useRouter } from "next/router";
 import { FaRegEdit } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoMdLogIn } from "react-icons/io";
 
 type Props = {
   navbarEnable?: boolean;
@@ -56,13 +56,17 @@ const AppWrapper = ({
                       className="p-2 focus:!outline-none  rounded-lg focus:border focus:border-black focus:rounded-lg"
                     />
 
-                    <FiSearch size={24} className="cursor-pointer"  onClick={handleSearchClick}/>
+                    <FiSearch
+                      size={24}
+                      className="cursor-pointer"
+                      onClick={handleSearchClick}
+                    />
                   </>
                 )}
               </div>
 
-              <div className="hidden lg:block lg:flex lg:gap-2">
-                <Navbar items={NavbarItems} />
+              <div className="hidden  lg:flex lg:gap-2">
+                <Navbar items={NavbarItems} setopenMenu={setopenMenu} />
               </div>
               <div className="block flex items-center justify-center lg:hidden">
                 <RxHamburgerMenu
@@ -85,7 +89,7 @@ const AppWrapper = ({
                       setopenMenu(false);
                     }}
                   />
-                  <Navbar items={NavbarItems} />
+                  <Navbar items={NavbarItems} setopenMenu={setopenMenu}/>
                 </div>
               </div>
             </div>
@@ -112,5 +116,9 @@ const NavbarItems = [
     title: "Write",
     icon: <FaRegEdit size={28} />,
     url: "/write-blog",
+  },
+  {
+    title: "Login",
+    icon: <IoMdLogIn size={28} />,
   },
 ];
