@@ -52,11 +52,6 @@ export const AuthContextProvider = ({
   const navbarItems = React.useMemo(() => {
     const items = [
       {
-        title: "Profile",
-        icon: <CgProfile size={28} />,
-        url: "/profile",
-      },
-      {
         title: "Write",
         icon: <FaRegEdit size={28} />,
         url: "/write-blog",
@@ -65,10 +60,16 @@ export const AuthContextProvider = ({
 
     if (isLoggedIn && user) {
       items.push({
+        title: "Profile",
+        icon: <CgProfile size={28} />,
+        url: "/profile",
+      });
+      items.push({
         title: "Logout",
         icon: <IoMdLogOut size={28} />,
         url: "#",
       });
+     
     } else {
       items.push({
         title: "Login",
