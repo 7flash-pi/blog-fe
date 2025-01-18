@@ -33,4 +33,16 @@ export function useGetSingleBlog(blogId: string) {
 
 export const validateUserUrl = "validate-user";
 
+export const blogPostUrl ='blog'
+interface BlogData {
+  createdAt: string;
+  type: string;
+  title: string;
+  description: string;
+  createdBy: string;
+}
 
+// Fetcher function for posting a blog
+export const postBlog = async (blogData: BlogData) => {
+  return await postData("blog", blogData); // Endpoint assumed to be "blog"
+};

@@ -4,26 +4,52 @@ import { blog } from "@/common/blogs";
 import { formatDate } from "@/common/util";
 import React, { useState } from "react";
 import WysiwygEditor from "./WysiwygEditor"; // Import the WysiwygEditor component
-import { useGetBlogCategories } from "@/api-fetchers/apiEndpoint";
+import { blogPostUrl, useGetBlogCategories } from "@/api-fetchers/apiEndpoint";
+import { useAuthContext } from "@/context/AuthContext";
+import { usePostBlog } from "@/api-fetchers/usePostBlog";
+import { useMutation } from "react-query";
+import { postData } from "@/api-fetchers/client";
+import { useRouter } from "next/router";
 
 const BlogInput = () => {
   const [blogData, setBlogData] = useState<blog | null>(null);
   const { data: categories } = useGetBlogCategories("blog-categories");
+  const {user}=useAuthContext()
+  const router=useRouter()
 
-  // Handle form submission and update blogData with selected category
-  const handleBlogsubmit = () => {
-    if (blogData) {
-      setBlogData(
-        (prevBlogData) =>
-          ({
-            ...prevBlogData,
-            createdAt: formatDate(new Date()), // Add current date
-            type: prevBlogData?.type || "General", // Default type to 'General' if undefined
-          } as blog)
-      );
+const mutation = useMutation(
+    async (blogData:any) => {
+      const response = await postData(blogPostUrl, blogData);
+      return response;
+    },
+    {
+      onSuccess: (data: any) => {
+        console.log("blog post successfully:", data);
+        setBlogData(null);
+        router.push('/');
+      },
+      onError: (error) => {
+        console.error("Error validating user:", error);
+        setBlogData(null);
+        // Handle error, e.g., show error message
+      },
     }
-    console.log(blogData);
+  );
+  // Handle form submission and update blogData with selected category
+  const handleBlogSubmit = () => {
+// Destructure the mutate function
+  
+    if (blogData) {
+      const updatedBlogData = {
+        ...blogData,
+        postedBy:user?.name,
+        createdAt: formatDate(new Date()), // Add current date
+        category: blogData?.category || "General", // Default type to 'General' if undefined
+      };
+      mutation.mutate(updatedBlogData);
+    }
   };
+  
 
   return (
     <div className="lg:w-3/4 md:w-full max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
@@ -77,16 +103,8 @@ const BlogInput = () => {
             type="text"
             id="author"
             placeholder="Enter author's name"
-            value={blogData?.createdBy || ""}
-            onChange={(e) => {
-              setBlogData(
-                (prevBlogData) =>
-                  ({
-                    ...prevBlogData,
-                    createdBy: e.target.value, // Update the author
-                  } as blog)
-              );
-            }}
+            value={user?.name || ""}
+            disabled
             className="w-full border border-gray-300 rounded-md p-4 text-lg focus:ring-blue-500 focus:border-blue-500 text-gray-800 shadow-sm"
           />
         </div>
@@ -97,13 +115,13 @@ const BlogInput = () => {
           </label>
           <select
             id="category"
-            value={blogData?.type || ""}
+            value={blogData?.category || ""}
             onChange={(e) => {
               setBlogData(
                 (prevBlogData) =>
                   ({
                     ...prevBlogData,
-                    type: e.target.value, // Update the selected category type
+                    category: e.target.value, // Update the selected category type
                   } as blog)
               );
             }}
@@ -124,7 +142,7 @@ const BlogInput = () => {
 
       <button
         className="mt-6 w-full bg-blue-600 text-white text-lg font-semibold py-3 rounded-md hover:bg-blue-700 transition duration-200 shadow-md"
-        onClick={handleBlogsubmit}
+        onClick={handleBlogSubmit}
       >
         Publish Blog
       </button>

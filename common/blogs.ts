@@ -47,7 +47,7 @@ export type blog={
   title:string,
   description:string,
   createdAt: string;
-  createdBy: string,
-  type:string,
+  author: string,
+  category:string,
 
 }
