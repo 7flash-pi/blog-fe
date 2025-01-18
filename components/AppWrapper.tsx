@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./NavItem";
 import { CgProfile } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { FaRegEdit } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose, IoMdLogIn } from "react-icons/io";
+import { useAuthContext } from "@/context/AuthContext";
 
 type Props = {
   navbarEnable?: boolean;
@@ -24,6 +25,7 @@ const AppWrapper = ({
 }: Props) => {
   const [openMenu, setopenMenu] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const {navbarItems} =useAuthContext();
 
   const router = useRouter();
   const handleSearchClick = () => {
@@ -66,7 +68,7 @@ const AppWrapper = ({
               </div>
 
               <div className="hidden  lg:flex lg:gap-2">
-                <Navbar items={NavbarItems} setopenMenu={setopenMenu} />
+                <Navbar items={navbarItems} setopenMenu={setopenMenu} />
               </div>
               <div className="block flex items-center justify-center lg:hidden">
                 <RxHamburgerMenu
@@ -89,7 +91,7 @@ const AppWrapper = ({
                       setopenMenu(false);
                     }}
                   />
-                  <Navbar items={NavbarItems} setopenMenu={setopenMenu}/>
+                  <Navbar items={navbarItems} setopenMenu={setopenMenu} />
                 </div>
               </div>
             </div>
@@ -106,19 +108,4 @@ const AppWrapper = ({
 
 export default AppWrapper;
 
-const NavbarItems = [
-  {
-    title: "Profile",
-    icon: <CgProfile size={28} />,
-    url: "/profile",
-  },
-  {
-    title: "Write",
-    icon: <FaRegEdit size={28} />,
-    url: "/write-blog",
-  },
-  {
-    title: "Login",
-    icon: <IoMdLogIn size={28} />,
-  },
-];
+

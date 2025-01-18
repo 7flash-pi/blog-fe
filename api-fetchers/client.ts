@@ -17,3 +17,19 @@ export async function fetchData(endpointPath:string) {
         throw error;
     }
 }
+
+export async function postData(endpointPath: string, data: object = {}) {
+    try {
+      // Construct full URL by prepending BASEURL to endpointPath
+      const url = `${BASEURL}${endpointPath}`;
+      
+      // Send POST request with data
+      const response = await axios.post(url, data); // Send the data in the request body
+  
+      return response.data; // Return the data from the response
+      
+    } catch (error: any) {
+      console.error('Error fetching data:', error.message);
+      throw error; // Re-throw the error for further handling if needed
+    }
+  }

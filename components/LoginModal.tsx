@@ -12,6 +12,10 @@ import {
 } from "@mui/material";
 import { FaEye, FaFingerprint } from "react-icons/fa";
 import { IoMdEyeOff } from "react-icons/io";
+import { useAuthContext } from "@/context/AuthContext";
+import { useMutation } from "react-query";
+import { postData } from "@/api-fetchers/client";
+import { validateUserUrl } from "@/api-fetchers/apiEndpoint";
 
 type Props = {
   isOpen: boolean;
@@ -22,10 +26,33 @@ const LoginModal = ({ isOpen, setisOpen }: Props) => {
   // Initialize state for user details
   const [userDetails, setuserDetails] = useState({ email: "", password: "" });
   const [showPassword, setshowPassword] = useState(false);
+  const { login,logout} = useAuthContext();
+
+  const mutation = useMutation(
+    async (userCredentials: { email: string; password: string }) => {
+      const response = await postData(validateUserUrl, userCredentials);
+      return response;
+    },
+    {
+      onSuccess: (data: any) => {
+        console.log("User validated successfully:", data);
+        login(data?.data)
+      },
+      onError: (error) => {
+        logout()
+        console.error("Error validating user:", error);
+        // Handle error, e.g., show error message
+      },
+    }
+  );
 
   // Handle login button click
   const handleLoginClick = () => {
-    console.log(userDetails); // To check the captured email and password
+    console.log(userDetails);
+    if (userDetails.email && userDetails.password) {
+      // Now use mutation directly within the function
+      mutation.mutate(userDetails);
+    }
     setisOpen(false); // Close modal after login
   };
 

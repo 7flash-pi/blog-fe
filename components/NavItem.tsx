@@ -1,7 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LoginModal from "./LoginModal";
+import { useAuthContext } from "@/context/AuthContext";
+import { IoMdLogIn } from "react-icons/io";
+import { IoMdLogOut } from "react-icons/io";
 
 type Props = {
   items: { title: string; icon?: React.JSX.Element; url?: string }[];
@@ -10,6 +13,7 @@ type Props = {
 
 const Navbar = ({ items, setopenMenu }: Props) => {
   const router = useRouter();
+  const {  logout } = useAuthContext();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   const handleNavClick = (item: {
@@ -24,11 +28,16 @@ const Navbar = ({ items, setopenMenu }: Props) => {
       setIsLoginModalOpen(true);
       setopenMenu(false);
     }
+    if( item.title === 'Logout'){
+      logout();
+    }
   };
 
   const handleCloseModal = () => {
     setIsLoginModalOpen(false);
   };
+
+ 
 
   return (
     <>

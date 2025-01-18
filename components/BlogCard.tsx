@@ -1,30 +1,23 @@
-
 import React from "react";
 import { useRouter } from "next/router";
 
 type Props = {
   isReadMoreEnabled?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  blog?:any
+  blog?: any;
 };
 
-const BlogCard = ({ isReadMoreEnabled = true,blog }: Props) => {
+const BlogCard = ({ isReadMoreEnabled = true, blog }: Props) => {
   const router = useRouter();
 
-
-
   const handleReadMoreClick = () => {
-    console.log(blog)
+    console.log(blog);
     router.push(`/singleBlog/${blog?.id}`);
   };
-
-// Example blog from blogs array
 
   return (
     <div
       className={`border-2 border-gray-200 p-6 w-full lg:w-4/5 md:w-3/4 rounded-lg flex flex-col gap-4 shadow-lg hover:shadow-2xl transition-shadow duration-300 `}
       onClick={handleReadMoreClick}
-     
     >
       {/* Blog Title */}
       <h2
@@ -37,14 +30,13 @@ const BlogCard = ({ isReadMoreEnabled = true,blog }: Props) => {
       {/* Blog Description */}
       <div
         dangerouslySetInnerHTML={{
-          __html: 
-            blog.description,
+          __html: blog.description,
         }}
         className="text-gray-700 mt-2"
       ></div>
 
       {/* Read More Link */}
-      {isReadMoreEnabled  && (
+      {isReadMoreEnabled && (
         <p
           onClick={handleReadMoreClick}
           className="text-blue-500 cursor-pointer hover:text-blue-700 mt-4 font-medium transition-colors"
