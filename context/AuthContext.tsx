@@ -35,18 +35,20 @@ export const AuthContextProvider = ({
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    const initializeAuth = () => {
       const storedUser = localStorage.getItem("user");
       const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
 
       if (storedUser && JSON.parse(storedIsLoggedIn || "false")) {
-        setUser(JSON.parse(storedUser));
-        setIsLoggegIn(true);
+        setUser(JSON.parse(storedUser)); // Set user from localStorage
+        setIsLoggegIn(true); // Set logged-in status
       } else {
-        setUser(null);
-        setIsLoggegIn(false);
+        setUser(null); // Clear user if not logged in
+        setIsLoggegIn(false); // Clear logged-in status
       }
-    }
+    };
+
+    initializeAuth();
   }, []);
 
   const navbarItems = React.useMemo(() => {
