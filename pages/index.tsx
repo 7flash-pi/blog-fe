@@ -4,12 +4,13 @@ import AppWrapper from "@/components/AppWrapper";
 import BlogCard from "@/components/BlogCard";
 import BlogCategory from "@/components/BlogCategory";
 
-import React from "react";
+import React, { use, useEffect } from "react";
 import { ColorRing } from "react-loader-spinner";
 
 export default function Home() {
   const { data: blogData,isLoading } = useFetchData("blogs");
   const { data: category ,isLoading:isCatLoading } = useGetBlogCategories("blog-categories");
+
 
   return (
       <AppWrapper navbarEnable={true} padding={true} isSearchEnabled={true}>
@@ -32,7 +33,7 @@ export default function Home() {
               {blogData?.length > 0 &&
                 blogData.map((blog: any) => (
                   <React.Fragment key={blog.id}>
-                    <BlogCard blog={blog} />
+                    <BlogCard blog={blog}  />
                   </React.Fragment>
                 ))}
             </div>

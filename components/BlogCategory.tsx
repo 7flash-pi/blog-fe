@@ -25,9 +25,10 @@ const BlogCategory = ({ categories,isCatLoading }: Props) => {
         (item: any) => item.name === decodeURI(hash)
       );
       setActiveTab(index);
-      console.log({ laura: decodeURI(hash), index });
+      localStorage.setItem('activeCategory',JSON.stringify(categories[activeTab]))
+ 
     }
-  }, [router]);
+  }, [router,activeTab]);
 
   if(isCatLoading){
     return <></>

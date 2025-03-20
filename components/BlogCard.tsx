@@ -13,6 +13,7 @@ const BlogCard = ({ isReadMoreEnabled = true, blog }: Props) => {
     console.log(blog);
     router.push(`/singleBlog/${blog?.id}`);
   };
+  const truncatedDescription = blog.description.slice(0, 200);
 
   return (
     <div
@@ -30,7 +31,7 @@ const BlogCard = ({ isReadMoreEnabled = true, blog }: Props) => {
       {/* Blog Description */}
       <div
         dangerouslySetInnerHTML={{
-          __html: blog.description,
+          __html: isReadMoreEnabled ? truncatedDescription : blog.description,
         }}
         className="text-gray-700 mt-2"
       ></div>
